@@ -1,0 +1,13 @@
+<app-add-todo (todoAdded)="createNewTodoItem($event)"></app-add-todo>
+<div *ngFor="let todoItem of todoItems">
+    <ng-container *ngIf="!todoItem.completed">
+        <app-todo-item [todoItem]="todoItem" (todoUpdated)="updateTodoItem($event)" (todoDeleted)="deleteTodoItem($event)"></app-todo-item>
+    </ng-container>    
+</div>
+<hr> 
+<h1>Completed</h1>
+<div *ngFor="let todoItem of todoItems">
+    <ng-container *ngIf="todoItem.completed">
+        <app-todo-item [todoItem]="todoItem" (todoUpdated)="updateTodoItem($event)" (todoDeleted)="deleteTodoItem($event)"></app-todo-item>
+    </ng-container>    
+</div>
