@@ -10,6 +10,7 @@ import { TodoService } from '../services/todo.service';
 export class TodoListComponent implements OnInit{ 
 
   todoItems: TodoItem[] = [];
+  groupedTodoItems: { [key: string]: TodoItem[] } = {};
 
   constructor(private todoService: TodoService) {
 
@@ -21,8 +22,9 @@ export class TodoListComponent implements OnInit{
 
   getAllTodoItems() {
     this.todoService.getAllTodoItems().subscribe(
-      data => {
-        this.todoItems = data;
+      items => {
+        this.todoItems = items;
+        this.groupTodoItems();
       },
       error => {
         console.log(error);
@@ -32,8 +34,9 @@ export class TodoListComponent implements OnInit{
   
   createNewTodoItem(todoItem: TodoItem) {
     this.todoService.createNewTodoItem(todoItem).subscribe(
-      res => {
-        this.todoItems.push(res)
+      item => {
+        this.todoItems.push(item)
+        this.groupTodoItems();
       },
       error => {
         console.log(error)
@@ -47,6 +50,7 @@ export class TodoListComponent implements OnInit{
         res => {
           const index = this.todoItems.findIndex(item => item.id === todoItem.id);
           this.todoItems[index] = res;
+          this.groupTodoItems();
         },
         error => {
           console.log(error);
@@ -59,10 +63,21 @@ export class TodoListComponent implements OnInit{
     this.todoService.deleteTodoItem(id).subscribe(
       res => {
         this.todoItems = this.todoItems.filter(item => item.id !== id);
+        this.groupTodoItems();
       },
       error => {
         console.log(error);
       }
     )
+  }
+
+  private groupTodoItems(): void {
+    this.groupedTodoItems = this.todoItems.reduce((acc: {[key: string]: TodoItem[]}, item) => {
+      const key = item.completed ? 'completed' : 'uncompleted';
+      return {
+        ...acc,
+        [key]: [...(acc[key] || []), item]
+      };
+    }, {});
   }
 }

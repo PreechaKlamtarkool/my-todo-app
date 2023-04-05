@@ -9,13 +9,21 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TodoItemComponent } from './todo-list/todo-item/todo-item.component';
 import { AddTodoComponent } from './todo-list/add-todo/add-todo.component'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HeaderComponent } from './header/header.component';
+import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     TodoListComponent,
     TodoItemComponent,
-    AddTodoComponent
+    AddTodoComponent,
+    HeaderComponent,
+    LoginComponent,
+    RegisterComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,

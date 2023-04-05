@@ -1,3 +1,11 @@
-<input type="checkbox" (click)="toggleCompleted()" [checked]="todoItem.completed">
-{{ todoItem.title }}
-<button class="btn btn-danger" (click)="onDelete()">Delete</button>
+<div class="card mt-2">
+    <div class="card-body">
+        <div class="form-check mt-2">
+            <input class="form-check-input" type="checkbox" [id]="todoItem.id" (click)="toggleCompleted()" [checked]="todoItem.completed">
+            <label class="form-check-label" [for]="todoItem.id">{{todoItem.title}}</label>    
+        </div>
+    </div>
+</div>
+
+
+

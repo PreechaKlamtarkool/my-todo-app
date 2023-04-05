@@ -1,0 +1,27 @@
+<div class="container"> 
+    <div class="card">
+        <div class="card-body">
+            <h1>Register Form</h1>
+            <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+                <div>
+                    <label for="firstName">First name</label>
+                    <input type="text" class="form-control" id="firstName" formControlName="firstName">
+                </div>
+                <div>
+                    <label for="lastName">Last name</label>
+                    <input type="text" class="form-control" id="lastName" formControlName="lastName">
+                </div>
+                <div>
+                    <label for="email">Email</label>
+                    <input type="text" class="form-control" id="email" formControlName="email">
+                </div>
+                <div>
+                    <label for="password">Password</label>
+                    <input type="password" class="form-control" id="password" formControlName="password">
+                </div>
+                <button class="btn btn-primary">Register</button>
+            </form>
+        </div>
+    </div>
+</div>
+

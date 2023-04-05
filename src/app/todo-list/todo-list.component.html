@@ -1,13 +1,17 @@
+
 <app-add-todo (todoAdded)="createNewTodoItem($event)"></app-add-todo>
-<div *ngFor="let todoItem of todoItems">
-    <ng-container *ngIf="!todoItem.completed">
-        <app-todo-item [todoItem]="todoItem" (todoUpdated)="updateTodoItem($event)" (todoDeleted)="deleteTodoItem($event)"></app-todo-item>
-    </ng-container>    
+
+<div *ngIf="groupedTodoItems['uncompleted'] && groupedTodoItems['uncompleted'].length > 0">
+    <div *ngFor="let todoItem of groupedTodoItems['uncompleted']">       
+        <app-todo-item [todoItem]="todoItem" (todoUpdated)="updateTodoItem($event)" (todoDeleted)="deleteTodoItem($event)"></app-todo-item>        
+    </div>    
 </div>
-<hr> 
-<h1>Completed</h1>
-<div *ngFor="let todoItem of todoItems">
-    <ng-container *ngIf="todoItem.completed">
+
+<div *ngIf="groupedTodoItems['completed'] && groupedTodoItems['completed'].length > 0">
+    <h1>Completed</h1>
+    <div *ngFor="let todoItem of groupedTodoItems['completed']">
         <app-todo-item [todoItem]="todoItem" (todoUpdated)="updateTodoItem($event)" (todoDeleted)="deleteTodoItem($event)"></app-todo-item>
-    </ng-container>    
-</div>
+    </div>
+</div>    
+
+
